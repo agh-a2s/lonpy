@@ -1,0 +1,7 @@
+paper_results/
+.venv/
+.ruff_cache/
+.mypy_cache/
+paper_reproduction.py
+site/
+CLAUDE.md
