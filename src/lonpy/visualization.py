@@ -72,11 +72,7 @@ class LONVisualizer:
         if graph.ecount() == 0:
             return [1.0]
 
-        counts = (
-            graph.es["Count"]
-            if "Count" in graph.es.attributes()
-            else [1] * graph.ecount()
-        )
+        counts = graph.es["Count"] if "Count" in graph.es.attributes() else [1] * graph.ecount()
         max_count = max(counts) if counts else 1
 
         widths = []
@@ -404,7 +400,7 @@ class LONVisualizer:
         frames: list[np.ndarray] = []
 
         try:
-            for i, angle in enumerate(angles):
+            for angle in angles:
                 fig = go.Figure()
 
                 # Draw edges
@@ -419,9 +415,7 @@ class LONVisualizer:
                                 y=[y[src_idx], y[tgt_idx]],
                                 z=[z[src_idx], z[tgt_idx]],
                                 mode="lines",
-                                line=dict(
-                                    color=COLORS["edge"], width=edge_widths[j] * 2
-                                ),
+                                line=dict(color=COLORS["edge"], width=edge_widths[j] * 2),
                                 hoverinfo="none",
                                 showlegend=False,
                             )
@@ -483,9 +477,7 @@ class LONVisualizer:
                 )
 
                 # Render directly to memory (avoids temp files and stray alpha blending)
-                png_bytes = fig.to_image(
-                    format="png", width=width, height=height, scale=1
-                )
+                png_bytes = fig.to_image(format="png", width=width, height=height, scale=1)
                 frames.append(imageio.v3.imread(png_bytes, extension=".png"))
 
             imageio.mimsave(
