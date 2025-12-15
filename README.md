@@ -4,6 +4,7 @@
 
 [![PyPI version](https://badge.fury.io/py/lonpy.svg)](https://pypi.org/project/lonpy/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Ujl48ffgHg9ck1Hueh59s65OR3Q3BG99?usp=sharing)
 
 **Local Optima Networks for Continuous Optimization**
 
