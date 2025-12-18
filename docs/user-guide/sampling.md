@@ -55,7 +55,7 @@ lon = sampler.sample_to_lon(my_objective, domain)
 **Choosing n_runs and n_iterations:**
 
 - More runs = better coverage of the landscape
-- More iterations = deeper exploration from each starting point
+- More iterations = deeper exploitation from each starting point
 - Trade-off: `n_runs × n_iterations` determines total evaluations
 
 ```python
