@@ -106,6 +106,7 @@ def save_network_grid(
     functions: dict[str, FunctionConfig],
     output_path: Path,
     labels: str = "abcdefghijklmnop",
+    layout_seed: int = DEFAULT_SEED,
 ) -> None:
     """Save a combined grid of CMLON network plots."""
     viz = LONVisualizer()
@@ -142,7 +143,7 @@ def save_network_grid(
             edge_widths = viz.compute_edge_widths(graph)
             node_sizes = viz.compute_node_sizes(graph)
             node_colors = viz.compute_cmlon_colors(cmlon)
-            layout = viz.get_layout(graph, seed=None)
+            layout = viz.get_layout(graph, seed=layout_seed)
 
             if graph.ecount() > 0:
                 for i, edge in enumerate(graph.es):

@@ -3,6 +3,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from problems import ackley4, griewank, schwefel2_26
 from utils import (
+    DEFAULT_SEED,
     IMAGES_DIR,
     FunctionConfig,
     build_all,
@@ -45,7 +46,7 @@ def save_individual_figures(results: dict, images_dir: Path) -> None:
     viz = LONVisualizer()
     for (func_name, n_var), (cmlon, _metrics) in results.items():
         path = images_dir / f"fig3_{func_name}_dim{n_var}.png"
-        fig = viz.plot_2d(cmlon, output_path=str(path))
+        fig = viz.plot_2d(cmlon, output_path=str(path), seed=DEFAULT_SEED)
         plt.close(fig)
         print(f"  Saved {path}")
 
