@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-from npp_paths import IMAGES_DIR
+from npp_paths import IMAGES_DIR, LONS_DATA_DIR, save_traces
 
 from lonkit import (
     CMLON,
@@ -95,11 +95,13 @@ def main():
 
     lon_config = LONConfig(eq_atol=1e-8)
     cmlon_by_k = {}
+    traces = {}
 
     for k in K_VALUES:
         problem = NumberPartitioning(n=N, k=k, instance_seed=INSTANCE_SEED)
         sampler = ILSSampler(sampler_config)
         result = sampler.sample(problem)
+        traces[f"NPP_k{k:.3f}"] = result.trace_df
 
         lon = sampler.sample_to_lon(result, lon_config)
         cmlon = lon.to_cmlon()
@@ -108,6 +110,7 @@ def main():
         vis = LONVisualizer(0.5, 1, arrow_size=0.1)
         vis.plot_2d(cmlon, f"{IMAGES_DIR}/NPP_{k}_2d.png")
 
+    save_traces(traces, LONS_DATA_DIR)
     render_3d_lons(cmlon_by_k)
     render_merged_lon_grid(K_VALUES)
 
